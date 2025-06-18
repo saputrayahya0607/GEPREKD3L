@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="hero-fullscreen">
+    <img src="{{ url_for('static', filename='img/GEPEK.jpeg') }}" alt="Ayam Geprek" class="fullscreen-image">
+    <div class="hero-overlay">
+        <h1>Pedasnya Bikin Ketagihan!</h1>
+        <p>Ayam geprek dengan sensasi pedas yang menggugah selera. Dijamin bikin kamu ketagihan!</p>
+        <div class="hero-buttons">
+            <a href="{{ url_for('menu') }}" class="btn btn-orange">Lihat Menu</a>
+            <a href="{{ url_for('about') }}" class="btn btn-outline">Tentang Kami</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

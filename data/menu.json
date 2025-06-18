@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Ayam Geprek Original",
+    "price": 15000,
+    "image": "geprek-original.jpg"
+  },
+  {
+    "name": "Ayam Geprek Keju",
+    "price": 18000,
+    "image": "geprek-keju.jpg"
+  },
+  {
+    "name": "Ayam Geprek Sambal Ijo",
+    "price": 17000,
+    "image": "geprek-ijo.jpg"
+  }
+]

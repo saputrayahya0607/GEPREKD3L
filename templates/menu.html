@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="menu-section">
+    <h2 class="section-heading">Menu Kami</h2>
+    <p class="text-center">Pilihan menu lezat dengan berbagai level kelezatan yang bisa disesuaikan dengan selera Anda.</p>
+
+    <div class="menu-grid">
+        {% for item in items %}
+        <div class="menu-card">
+            <img src="{{ url_for('static', filename='img/' + item.image) }}" alt="{{ item.name }}">
+            <h3>{{ item.name }}</h3>
+            <p>Rp {{ item.price }}</p>
+            <form method="POST" action="{{ url_for('add_to_cart') }}">
+                <input type="hidden" name="item" value="{{ item.name }}">
+                <input type="hidden" name="price" value="{{ item.price }}">
+                <button class="btn-orange" type="submit">+ pesanan</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

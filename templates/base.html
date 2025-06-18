@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>GeprekMantap</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="{{ url_for('home') }}">Geprek<span>Mantap</span></a></div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('menu') }}">Menu</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('location') }}">Location</a></li>
+                <!-- <li><a href="{{ url_for('contact') }}">Contact</a></li> -->
+                <li class="cart-icon">
+                    <a href="{{ url_for('cart') }}">
+                        <i class="fa fa-shopping-cart"></i>
+                        {% if session.cart %}
+                        {% set total_items = session.cart | sum(attribute='qty') %}
+                        <span class="cart-count">{{ total_items }}</span>
+                        {% endif %}
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>© 2025 GeprekMantap. All rights reserved.</p>
+    </footer>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>

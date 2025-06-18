@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="cart-section">
+    <h2>Keranjang Kamu</h2>
+
+    {% if cart %}
+    <ul>
+        {% for item in cart %}
+        <li>{{ item['item'] }} ({{ item['qty'] }}x) - Rp {{ item['price'] * item['qty'] }}</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    {% set total = namespace(value=0) %}
+    {% set pesan_lines = namespace(lines='') %}
+
+    {% for item in cart %}
+        {% set subtotal = item['price'] * item['qty'] %}
+        {% set total.value = total.value + subtotal %}
+        {% set pesan_lines.lines = pesan_lines.lines + "- " + item['item'] + " (" + item['qty']|string + "x) = Rp " + subtotal|string + "\n" %}
+    {% endfor %}
+
+
+    <p><strong>Total: Rp {{ total.value }}</strong></p>
+
+    {% set pesan = "Halo kak, saya mau pesan:\n" + pesan_lines.lines + "\nTotal: Rp " + total.value|string + "\n\nTerima kasih 🙏" %}
+
+    <div class="cart-buttons">
+        <a href="https://wa.me/6285540116690?text={{ pesan | urlencode }}" target="_blank">
+            <button class="btn-green">Pesan via WhatsApp</button>
+        </a>
+        <a href="{{ url_for('clear_cart') }}">
+            <button class="btn-red">Hapus Semua</button>
+        </a>
+    </div>
+
+    {% else %}
+    <p>Keranjang masih kosong.</p>
+    {% endif %}
+</section>
+{% endblock %}

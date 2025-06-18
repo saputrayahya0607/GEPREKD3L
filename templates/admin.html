@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="admin-section">
+    <h2>Admin Menu Management</h2>
+    <a href="{{ url_for('admin_create') }}" class="btn btn-orange">Tambah Menu Baru</a>
+    <table border="1" cellpadding="10" cellspacing="0" style="margin-top: 20px; width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th>Nama Menu</th>
+                <th>Harga</th>
+                <th>Gambar</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>Rp {{ item.price }}</td>
+                <td><img src="{{ url_for('static', filename='img/' + item.image) }}" alt="{{ item.name }}" style="height: 60px;"></td>
+                <td>
+                    <a href="{{ url_for('admin_update', item_name=item.name) }}" class="btn btn-outline">Edit</a>
+                    <a href="{{ url_for('admin_delete', item_name=item.name) }}" class="btn btn-outline" onclick="return confirm('Yakin ingin menghapus menu ini?');">Hapus</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('logout') }}" class="btn btn-red" style="margin-top: 20px;">Logout</a>
+</section>
+{% endblock %}
