@@ -8,12 +8,12 @@
     <div class="menu-grid">
         {% for item in items %}
         <div class="menu-card">
-            <img src="{{ url_for('static', filename='img/' + item.image) }}" alt="{{ item.name }}">
-            <h3>{{ item.name }}</h3>
-            <p>Rp {{ item.price }}</p>
+            <img src="{{ url_for('static', filename='img/' + item.gambar) }}" alt="{{ item.nama }}">
+            <h3>{{ item.nama }}</h3>
+            <p>Rp {{ item.harga }}</p>
             <form method="POST" action="{{ url_for('add_to_cart') }}">
-                <input type="hidden" name="item" value="{{ item.name }}">
-                <input type="hidden" name="price" value="{{ item.price }}">
+                <input type="hidden" name="item" value="{{ item.nama }}">
+                <input type="hidden" name="price" value="{{ item.harga }}">
                 <button class="btn-orange" type="submit">+ pesanan</button>
             </form>
         </div>
