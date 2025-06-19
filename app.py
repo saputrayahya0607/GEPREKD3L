@@ -302,6 +302,44 @@ def create_default_admin():
     cursor.close()
     connection.close()
 
+@app.route('/admin_user_edit', methods=['GET', 'POST'])
+@login_required
+def admin_user_edit():
+    error = None
+    success = None
+    username = ''
+    try:
+        connection = get_db_connection()
+        cursor = connection.cursor(dictionary=True)
+        cursor.execute("SELECT username FROM pengguna WHERE id = %s", (session['user_id'],))
+        row = cursor.fetchone()
+        if row:
+            username = row['username']
+    except Exception as e:
+        error = 'Gagal mengambil data admin.'
+
+    if request.method == 'POST':
+        new_username = request.form.get('username')
+        new_password = request.form.get('password')
+
+        if not new_username or not new_password:
+            error = 'Username dan password harus diisi.'
+        else:
+            try:
+                hashed_password = generate_password_hash(new_password)
+                cursor.execute("UPDATE pengguna SET username = %s, password = %s WHERE id = %s",
+                               (new_username, hashed_password, session['user_id']))
+                connection.commit()
+                success = 'Data admin berhasil diperbarui.'
+                username = new_username
+            except Exception as e:
+                error = 'Gagal memperbarui data admin.'
+            finally:
+                cursor.close()
+                connection.close()
+
+    return render_template('admin_user_edit.html', error=error, success=success, username=username)
+
 if __name__ == '__main__':
     create_default_admin()
     app.run(debug=True)

@@ -2,22 +2,32 @@
 
 {% block content %}
 <section class="admin-form-section">
-    <h2>{{ form_title }}</h2>
-    {% if error %}
-    <p style="color: red;">{{ error }}</p>
-    {% endif %}
-    <form method="POST" enctype="multipart/form-data" action="{{ form_action }}">
-        <label for="name">Nama Menu:</label>
-        <input type="text" id="name" name="name" value="{{ item.nama if item else '' }}" required>
+    <div class="admin-form-container">
+        <h2>{{ form_title }}</h2>
+        {% if error %}
+        <p class="error-message">{{ error }}</p>
+        {% endif %}
+        <form method="POST" enctype="multipart/form-data" action="{{ form_action }}">
+            <div class="form-group">
+                <label for="name">Nama Menu:</label>
+                <input type="text" id="name" name="name" value="{{ item.nama if item else '' }}" required>
+            </div>
 
-        <label for="price">Harga:</label>
-        <input type="number" id="price" name="price" value="{{ item.harga if item else '' }}" required>
+            <div class="form-group">
+                <label for="price">Harga menu:</label>
+                <input type="number" id="price" name="price" value="{{ item.harga if item else '' }}" required>
+            </div>
 
-        <label for="image">Upload Gambar Menu:</label>
-        <input type="file" id="image" name="image" {% if not item %}required{% endif %}>
+            <div class="form-group">
+                <label for="image">Upload Gambar:</label>
+                <input type="file" id="image" name="image" {% if not item %}required{% endif %}>
+            </div>
 
-        <button type="submit" class="btn btn-orange">{{ submit_label }}</button>
-        <a href="{{ url_for('admin') }}" class="btn btn-outline">Batal</a>
-    </form>
+            <div class="form-buttons">
+                <button type="submit" class="btn btn-orange">{{ submit_label }}</button>
+                <a href="{{ url_for('admin') }}" class="btn btn-outline">Batal</a>
+            </div>
+        </form>
+    </div>
 </section>
 {% endblock %}

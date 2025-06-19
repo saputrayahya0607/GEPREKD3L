@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="admin-form-section">
+    <div class="admin-user-edit-container admin-form-container">
+        <h2>Edit Admin User</h2>
+        {% if error %}
+        <p class="error-message">{{ error }}</p>
+        {% endif %}
+        {% if success %}
+        <p class="success-message">{{ success }}</p>
+        {% endif %}
+        <form method="POST" action="{{ url_for('admin_user_edit') }}">
+            <div class="form-group">
+                <label for="username">Username Baru:</label>
+                <input type="text" id="username" name="username" value="{{ username }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password Baru:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <div class="form-buttons">
+                <button type="submit" class="btn btn-orange">Simpan</button>
+                <a href="{{ url_for('admin') }}" class="btn btn-outline">Batal</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

@@ -2,43 +2,50 @@
 
 {% block content %}
 <section class="admin-section">
-    <h2>Admin Menu Management</h2>
-    <a href="{{ url_for('admin_create') }}" class="btn btn-orange">Tambah Menu Baru</a>
-    <table border="1" cellpadding="10" cellspacing="0" style="margin-top: 20px; width: 100%; border-collapse: collapse;">
-        <thead>
-            <tr>
-                <th>Nama Menu</th>
-                <th>Harga</th>
-                <th>Gambar</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% if items %}
-                {% for item in items %}
+    <div class="admin-container">
+        <h2>Admin Menu Management</h2>
+        <a href="{{ url_for('admin_create') }}" class="btn btn-green">Tambah Menu Baru</a>
+        <table class="admin-table">
+            <thead>
                 <tr>
-                    <td>{{ item.nama }}</td>
-                    <td>Rp {{ item.harga }}</td>
-                    <td>
-                        {% if item.gambar %}
-                            <img src="{{ url_for('static', filename='img/' + item.gambar) }}" alt="{{ item.nama }}" style="height: 60px;">
-                        {% else %}
-                            <span>Tidak ada gambar</span>
-                        {% endif %}
-                    </td>
-                    <td>
-                        <a href="{{ url_for('admin_update', item_id=item.id) }}" class="btn btn-outline">Edit</a>
-                        <a href="{{ url_for('admin_delete', item_id=item.id) }}" class="btn btn-outline" onclick="return confirm('Yakin ingin menghapus menu ini?');">Hapus</a>
-                    </td>
+                    <th>Nama Menu</th>
+                    <th>Harga</th>
+                    <th>Gambar</th>
+                    <th>Aksi</th>
                 </tr>
-                {% endfor %}
-            {% else %}
-                <tr>
-                    <td colspan="4" style="text-align: center;">Belum ada menu yang tersedia.</td>
-                </tr>
-            {% endif %}
-        </tbody>
-    </table>
-    <a href="{{ url_for('logout') }}" class="btn btn-red" style="margin-top: 20px;">Logout</a>
+            </thead>
+            <tbody>
+                {% if items %}
+                    {% for item in items %}
+                    <tr>
+                        <td>{{ item.nama }}</td>
+                        <td>Rp {{ item.harga }}</td>
+                        <td>
+                            {% if item.gambar %}
+                                <img src="{{ url_for('static', filename='img/' + item.gambar) }}" alt="{{ item.nama }}" class="admin-img">
+                            {% else %}
+                                <span>Tidak ada gambar</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{{ url_for('admin_update', item_id=item.id) }}" class="btn btn-blue">Edit</a>
+                            <a href="{{ url_for('admin_delete', item_id=item.id) }}" class="btn btn-red" onclick="return confirm('Yakin ingin menghapus menu ini?');">Hapus</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="4" style="text-align: center;">Belum ada menu yang tersedia.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+        <div class="admin-buttons">
+            <a href="{{ url_for('admin_user_edit') }}" class="btn btn-purple">Edit Admin User</a>
+        </div>
+        <div class="logout-container">
+            <a href="{{ url_for('logout') }}" class="btn btn-red logout-btn">Logout</a>
+        </div>
+    </div>
 </section>
 {% endblock %}
