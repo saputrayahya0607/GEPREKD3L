@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
 <section class="about-section vertical-layout">
     <h2>Tentang Kami</h2>
+        <img src="{{ url_for('static', filename='img/LOGOnew.png') }}" alt="Tentang GeprekMantap">
+   
     <p>
         GeprekMantap adalah rumah bagi pecinta ayam geprek dengan sensasi pedas yang luar biasa. 
         Kami menyajikan ayam geprek dengan berbagai level kepedasan, dari yang ramah lidah sampai yang bikin kamu berkeringat!
@@ -12,8 +14,5 @@
         Didirikan sejak 2024, kami berkomitmen memberikan rasa terbaik, bahan berkualitas, dan pelayanan ramah 
         demi pengalaman makan yang tak terlupakan. Kami percaya bahwa makanan enak tidak harus mahal!
     </p>
-    <div class="about-image">
-        <img src="{{ url_for('static', filename='img/about-us.jpg') }}" alt="Tentang GeprekMantap">
-    </div>
 </section>
 {% endblock %}

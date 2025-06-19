@@ -85,3 +85,10 @@
         margin-top: 40px;
     }
 }
+
+.about-section.vertical-layout img {
+    display: block;
+    margin: 0 auto;
+    max-width: 40%;
+    height: auto;
+}

@@ -30,6 +30,41 @@ body {
     transition: box-shadow 0.3s ease;
 }
 
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper input[type="password"],
+.password-wrapper input[type="text"] {
+    width: 100%;
+    padding-right: 40px; /* space for the eye icon */
+}
+
+#togglePassword {
+    position: absolute;
+    top: 30%;
+    right: 12px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+    font-size: 1.2rem;
+    user-select: none;
+    transition: color 0.3s ease;
+    z-index: 10;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    height: 1.2em;
+}
+
+#togglePassword:hover {
+    color: #4830d2;
+}
+
 .login-section:hover {
     box-shadow: 0 15px 40px rgba(0,0,0,0.25);
 }
@@ -237,6 +272,10 @@ body {
     background-color: #fff4e5;
 }
 
+.admin-table thead tr:hover {
+    background-color: transparent;
+}
+
 .admin-img {
     height: 60px;
     border-radius: 8px;
@@ -336,18 +375,37 @@ a {
 
 /* Navbar */
 .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #ff6600;
+    background-color: #e70202;
     padding: 15px 30px;
     color: white;
+    z-index: 1000;
+}
+
+body {
+    padding-top: 65px; /* height of navbar + some spacing */
 }
 
 .navbar .logo a {
     font-size: 1.5em;
     font-weight: bold;
     color: white;
+    line-height: 2.2rem; /* match login button font size */
+    padding-top: 0.3rem; /* adjust vertical alignment */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-logo {
+    height: 40px;
+    width: auto;
 }
 
 .navbar .logo span {
@@ -357,7 +415,48 @@ a {
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 15px;
+    align-items: center;
+}
+
+.nav-links li {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links li a {
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-links li a:hover {
+    text-decoration: none;
+    color: #a18571; /* darker orange */
+    background-color: transparent;
+    border-radius: 0;
+    transition: color 0.3s ease;
+}
+
+.nav-links li.cart-icon,
+.nav-links li.admin-icon {
+    padding: 0;
+    margin: 0 5px;
+}
+
+.nav-links li.cart-icon a,
+.nav-links li.admin-icon a {
+    padding: 8px 12px;
+}
+
+.nav-links li.cart-icon i,
+.nav-links li.admin-icon i {
+    font-size: 1.3rem;
+    line-height: 1;
 }
 
 .nav-links li a {
@@ -405,6 +504,12 @@ a {
     cursor: pointer;
     transition: background 0.3s;
     border: none;
+}
+
+.nav-links li a.btn-orange:hover {
+    background-color: #ff6600;
+    box-shadow: none;
+    cursor: default;
 }
 
 .btn-orange {
@@ -542,14 +647,56 @@ a {
 /* Admin Form Section */
 .admin-form-container {
     max-width: 500px;
-    margin: 40px auto;
+    margin: 20px auto;
     background: white;
-    padding: 30px 40px;
+    padding: 20px 30px;
     border-radius: 12px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.1);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
+}
+
+.admin-form-container.short-form {
+    max-height: 350px;
+    overflow-y: hidden;
+}
+
+.admin-form-container.short-form .form-group {
+    margin-bottom: 10px;
+}
+
+.admin-form-container.short-form input[type="text"],
+.admin-form-container.short-form input[type="number"],
+.admin-form-container.short-form input[type="file"] {
+    padding: 8px 10px;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+}
+
+.admin-form-container.compact-form {
+    padding: 10px 15px;
+    max-height: none;
+}
+
+.admin-form-container.compact-form .form-group {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.admin-form-container.compact-form label {
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+.admin-form-container.compact-form input[type="text"],
+.admin-form-container.compact-form input[type="number"],
+.admin-form-container.compact-form input[type="file"] {
+    padding: 8px 10px;
+    font-size: 1rem;
+    width: 100%;
+    margin-bottom: 15px;
 }
 
 .admin-form-container h2 {
@@ -718,11 +865,17 @@ a {
     background-color: #28a745;
     color: white;
     border: none;
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1.1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    width: auto;
+    min-width: 140px;
+    max-width: 180px;
+    display: block;
+    margin: 0;
 }
 
 .btn-green:hover {
@@ -745,14 +898,20 @@ a {
 }
 
 .btn-purple {
-    background-color: #6f42c1;
+    background-color: #4e0eaf;
     color: white;
     border: none;
     padding: 8px 16px;
-    border-radius: 6px;
-    font-weight: 600;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1.1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    width: auto;
+    min-width: 140px;
+    max-width: 180px;
+    display: block;
+    margin: 0;
 }
 
 .btn-purple:hover {
@@ -817,6 +976,7 @@ a {
     list-style: none;
     padding: 0;
     margin-bottom: 30px;
+    display: block;
 }
 
 .cart-section li {
@@ -832,10 +992,6 @@ a {
     align-items: center;
 }
 
-.cart-section li:last-child {
-    margin-bottom: 0;
-}
-
 .cart-section strong {
     display: block;
     font-size: 1.5rem;
@@ -847,14 +1003,24 @@ a {
 
 .cart-buttons {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     gap: 20px;
 }
-
 .cart-buttons .btn-green,
 .cart-buttons .btn-red {
-    padding: 14px 30px;
+    padding: 8px 16px;
     font-size: 1.2rem;
+    font-weight: 800;
+    border-radius: 12px;
+    cursor: pointer;
+    border: none;
+    transition: box-shadow 0.3s ease;
+    width: auto;
+    max-width: none;
+    display: inline-block;
+    text-align: center;
+
     font-weight: 800;
     border-radius: 12px;
     cursor: pointer;
@@ -1109,6 +1275,35 @@ footer {
 
 .cart-icon {
     position: relative;
+    margin-right: 5px;
+}
+
+.admin-icon {
+    position: relative;
+}
+
+.admin-icon a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+}
+
+.admin-icon i.fa-user {
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.nav-links li a.btn-orange {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+}
+
+.nav-links li a.btn-orange i.fa-user {
+    font-size: 1.2rem;
+    line-height: 1;
 }
 
 .cart-count {
