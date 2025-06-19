@@ -680,9 +680,102 @@ body {
 }
 
 .admin-form-container.compact-form .form-group {
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 10px;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 15px;
+}
+
+.form-group label {
+    flex: 0 0 140px;
+    margin-bottom: 0;
+    text-align: left;
+    font-weight: 700;
+    color: #444;
+    font-size: 1.1rem;
+}
+
+.admin-form-container input[type="text"],
+.admin-form-container input[type="number"],
+.admin-form-container input[type="file"],
+.admin-user-edit-container input[type="text"],
+.admin-user-edit-container input[type="password"] {
+    padding: 10px 12px;
+    border: 1.5px solid #ddd;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    margin-bottom: 0;
+    flex: 1;
+    transition: border-color 0.3s ease;
+}
+
+.admin-form-container input[type="text"]:focus,
+.admin-form-container input[type="number"]:focus,
+.admin-form-container input[type="file"]:focus,
+.admin-user-edit-container input[type="text"]:focus,
+.admin-user-edit-container input[type="password"]:focus {
+    border-color: #ff6600;
+    outline: none;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.form-buttons .btn {
+    flex: 1;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 12px 0;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease;
+}
+
+.form-buttons .btn:hover {
+    box-shadow: 0 6px 15px rgba(255, 102, 0, 0.6);
+}
+
+.admin-form-container.compact-form .form-group label {
+    margin-bottom: 4px; /* add spacing below label */
+}
+
+.admin-form-container.compact-form input[type="text"],
+.admin-form-container.compact-form input[type="number"],
+.admin-form-container.compact-form input[type="file"] {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 1rem;
+    margin-bottom: 12px; /* consistent spacing below inputs */
+    box-sizing: border-box;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 12px; /* reduced gap between buttons */
+    justify-content: center;
+}
+
+.form-buttons .btn {
+    flex: 1;
+    text-align: center;
+    padding: 12px 0;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease;
+}
+
+.form-buttons .btn-outline {
+    padding: 12px 0;
 }
 
 .admin-form-container.compact-form label {

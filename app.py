@@ -13,7 +13,7 @@ db_config = {
     'host': 'localhost',
     'user': 'root',  # Ganti dengan user MySQL Anda
     'password': '',  # Ganti dengan password MySQL Anda
-    'database': 'D3L'
+    'database': 'd3l'
 }
 
 def get_db_connection():
@@ -35,37 +35,6 @@ def login_required(f):
         print("DEBUG: User logged in, proceeding to requested page")
         return f(*args, **kwargs)
     return decorated_function
-
-# User registration
-# @app.route('/register', methods=['GET', 'POST'])
-# def register():
-#     if request.method == 'POST':
-#         username = request.form['username']
-#         password = request.form['password']
-#         hashed_password = generate_password_hash(password)
-#
-#         connection = get_db_connection()
-#         if connection is None:
-#             flash('Database connection error')
-#             return redirect(url_for('register'))
-#
-#         cursor = connection.cursor()
-#         cursor.execute("SELECT * FROM pengguna WHERE username = %s", (username,))
-#         existing_user = cursor.fetchone()
-#         if existing_user:
-#             cursor.close()
-#             connection.close()
-#             flash('Username sudah digunakan')
-#             return redirect(url_for('register'))
-#
-#         cursor.execute("INSERT INTO pengguna (username, password, created_at) VALUES (%s, %s, %s)",
-#                        (username, hashed_password, datetime.now()))
-#         connection.commit()
-#         cursor.close()
-#         connection.close()
-#         flash('Registrasi berhasil, silakan login')
-#         return redirect(url_for('login'))
-#     return render_template('register.html')
 
 # User login
 @app.route('/login', methods=['GET', 'POST'])
