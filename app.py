@@ -88,7 +88,8 @@ def load_menu():
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    items = load_menu()
+    return render_template('dashboard.html', items=items)
 
 @app.route('/menu')
 def menu():

@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Bagian Home -->
+<section class="hero-fullscreen">
+    <img src="{{ url_for('static', filename='img/BGGEPREK.jpg') }}" alt="Ayam Geprek" class="fullscreen-image">
+    <div class="hero-overlay">
+        <!-- <h1>CHICKEN GEPREK D3'L</h1>
+        <p>JAGONYA AYAM GEPREK</p> -->
+        <div class="hero-buttons">
+            <a href="{{ url_for('menu') }}" class="btn btn-orange">Lihat Menu</a>
+            <a href="{{ url_for('about') }}" class="btn btn-outline">Tentang Kami</a>
+        </div>
+    </div>
+</section>
+
+<!-- Bagian Menu -->
+<section class="menu-section">
+    <h2 class="section-heading">Menu Kami</h2>
+    <p class="text-center">Pilihan menu lezat dengan berbagai level kelezatan yang bisa disesuaikan dengan selera Anda.</p>
+
+    <div class="menu-grid">
+        {% for item in items %}
+        <div class="menu-card">
+            <img src="{{ url_for('static', filename='img/' + item.gambar) }}" alt="{{ item.nama }}">
+            <h3>{{ item.nama }}</h3>
+            <p>Rp {{ item.harga }}</p>
+            <form method="POST" action="{{ url_for('add_to_cart') }}">
+                <input type="hidden" name="item" value="{{ item.nama }}">
+                <input type="hidden" name="price" value="{{ item.harga }}">
+                <button class="btn-orange" type="submit">+ pesanan</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Bagian About -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+<section class="about-section vertical-layout">
+    <h2>Tentang Kami</h2>
+    <img src="{{ url_for('static', filename='img/LOGOnew.png') }}" alt="Tentang GeprekMantap">
+    <p>
+        D’3L adalah rumah bagi para pecinta ayam geprek yang mencari lebih dari sekadar rasa pedas. Kami menghadirkan ayam geprek dengan cita rasa khas, digeprek saat dipesan, dan disajikan dengan berbagai level kepedasan—mulai dari yang ramah di lidah hingga yang bikin keringat bercucuran.
+        
+        Kami percaya bahwa makanan yang enak nggak harus mahal. Karena itu, setiap porsi kami siapkan dengan bahan segar, bumbu racikan sendiri, dan pelayanan yang ramah agar pengalaman makan kamu terasa lebih istimewa.
+
+    </p>
+    <p>
+       Pesan Gampang Lewat Website
+    </p>
+    <p>
+       Nggak perlu antre atau ribet. Sekarang kamu bisa langsung pesan ayam geprek favorit lewat website kami. Praktis, cepat, dan tinggal tunggu makanan datang!
+
+    </p>
+    
+</section>
+
+<!-- Bagian Location -->
+<section class="location-section">
+    <h2 class="section-heading">Lokasi Kami</h2>
+    <p class="location-description">Kunjungi toko kami atau pesan online untuk pengalaman kuliner pedas yang tak terlupakan.</p>
+
+    <div class="location-wrapper">
+        <div class="map-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.848473500554!2d109.32784389999999!3d-6.908715399999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6fc5ff0f710489%3A0x4683c2acf8e9b44d!2sWarung%20chicken%20geprek%20D&#39;3L!5e0!3m2!1sid!2sid!4v1750309107374!5m2!1sid!2sid" 
+          width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <div class="location-info">
+            <div class="address">
+                <h3><i class="fa fa-map-marker-alt" aria-hidden="true" style="margin-right:8px;"></i>Alamat</h3>
+                <p>Jalan raya Warureja Desa Warureja Kec. Warureja, Kabupaten Tegal, Jawa Tengah 52183</p>
+            </div>
+            <div class="operational-hours">
+                <h3><i class="fa fa-clock" aria-hidden="true" style="margin-right:8px;"></i>Jam Operasional</h3>
+                <p>
+                    Senin - Jumat: 09:00 - 21:00<br>
+                    Sabtu - Minggu: 09:00 - 21:00<br>
+                    Hari Libur: Tanya Contact Tersedia
+                </p>
+            </div>
+            <div class="contact-info">
+                <h3><i class="fa fa-phone" aria-hidden="true" style="margin-right:8px;"></i>Kontak Kami</h3>
+                <p>
+                    CHICKEN GEPREK D3'L<br>
+                    <a href="tel:+6281234567890"><i class="fa fa-phone" aria-hidden="true" style="margin-right:4px;"></i>+62 858 6921 4597</a><br>
+                    <!-- <a href="mailto:info@geprekmantap.com"><i class="fa fa-envelope" aria-hidden="true" style="margin-right:4px;"></i>info@geprekmantap.com</a> -->
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
